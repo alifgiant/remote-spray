@@ -2,5 +2,9 @@
     "terminal.integrated.env.linux": {
         "PATH": "/home/alif/.platformio/penv/bin:/home/alif/.platformio/penv:/home/alif/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/alif/Android/Sdk/platform-tools:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/alif/Application/flutter/bin:/snap/bin",
         "PLATFORMIO_CALLER": "vscode"
+    },
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/bukalapak/.platformio/penv/bin:/Users/bukalapak/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/bukalapak/Development/flutter/bin:/Users/bukalapak/Library/Android/sdk/platform-tools",
+        "PLATFORMIO_CALLER": "vscode"
     }
 }
