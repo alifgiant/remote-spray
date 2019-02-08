@@ -12,15 +12,6 @@ const char* spray_topic = "remote-spray-alif";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-void setup() {
-  Serial.begin(115200); // start boudrate at 115200 Hz
-  Serial.println("--------------------------");
-  Serial.println("Remote Spray - Muhammad Alif Akbar");
-  Serial.println("--------------------------");
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
-}
-
 void setup_wifi() {
   delay(10);
   // We start by connecting to a WiFi network
@@ -43,6 +34,23 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+bool isSpraying = false;
+void doSpray() {
+  if (!isSpraying) {
+    Serial.println("spraying");
+    isSpraying = true;
+    digitalWrite(12, HIGH);
+    digitalWrite(13, LOW);
+    delay(1000);
+    digitalWrite(12, LOW);
+    digitalWrite(13, HIGH);
+    delay(1000);
+    digitalWrite(12, LOW);
+    digitalWrite(13, LOW);
+    isSpraying = false;
+    Serial.println("stop");
+  }
+}
 
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
@@ -56,22 +64,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // Switch on the LED if an 1 was received as first character
   if ((char)payload[0] == '1') {
     doSpray();
-  }
-}
-
-bool isSpraying = false;
-void doSpray() {
-  if (!isSpraying) {
-    isSpraying = true;
-    digitalWrite(12, HIGH);
-    digitalWrite(13, LOW);
-    delay(200);
-    digitalWrite(12, LOW);
-    digitalWrite(13, HIGH);
-    delay(200);
-    digitalWrite(12, LOW);
-    digitalWrite(13, LOW);
-    isSpraying = false;
   }
 }
 
@@ -98,9 +90,12 @@ void reconnect() {
 }
 
 void setup() {
+  Serial.begin(9600); // start boudrate at 115200 Hz
+  Serial.println("--------------------------");
+  Serial.println("Remote Spray - Muhammad Alif Akbar");
+  Serial.println("--------------------------");
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  Serial.begin(115200);
 
   setup_wifi();
   client.setServer(mqtt_server, 1883);
